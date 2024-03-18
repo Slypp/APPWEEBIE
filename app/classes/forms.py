@@ -37,6 +37,13 @@ class BlogForm(FlaskForm):
     content = TextAreaField('Blog', validators=[DataRequired()])
     tag = StringField('Tag', validators=[DataRequired()])
     submit = SubmitField('Blog')
+    
+class SchoolForm(FlaskForm):
+    mascot = StringField()
+    year_built = IntegerField()
+    location_1 = StringField()
+    year_tuito = IntegerField()
+    submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])

@@ -66,6 +66,18 @@ class Blog(Document):
         'ordering': ['-createdate']
     }
 
+class School(Document):
+    mascot = StringField()
+    year_built = IntField()
+    location_1 = StringField()
+    year_tuito = IntField()
+    create_date = DateTimeField(default=dt.datetime.utcnow)
+    modify_date = DateTimeField()
+
+    meta = {
+        'ordering': ['-createdate']
+    }
+
 class Comment(Document):
     # Line 63 is a way to access all the information in Course and Teacher w/o storing it in this class
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 

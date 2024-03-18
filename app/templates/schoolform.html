@@ -1,0 +1,40 @@
+{% extends "base.htm" %}
+
+{% block body% }
+        <h1 style="font-family: 'Courier New', Courier, monospace;">School Form</h1>
+        <form methot="post">
+            {{form.hidden_tag()}}
+            <p>
+                {{form.mascot.label}}<br>
+                {{form.mascot()}}
+                {% for error in form.mascot.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.year_built.label}}<br>
+                {{form.year_built()}}
+                {% for error in form.mascot.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.location_1.label}}<br>
+                {{form.location_1()}}
+                {% for error in form.mascot.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.year_tuito.label}}<br>
+                {{form.year_tuito()}}
+                {% for error in form.mascot.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{form.submit()}}
+            </p>
+        </form>
+    
+{% endblock %}
