@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if college %}
+    {% if college.modifydate %}
+        modified {{moment(college.modifydate).calendar()}}
+    {% endif %}
+    <br>
+    {% if college.author == current_user %}
+        <a data-toggle="tooltip" data-placement="top" title="Delete College" href="/college/delete/{{college.id}}" style="background-color: azure;">
+            <img width="50" class="bottom-image" src="/static/delete.png">
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="Edit College" href="/college/edit/{{college.id}}" style="background-color: azure;">
+            <img width="50" class="bottom-image" src="/static/edit.png">
+        </a>
+    {% endif %}
+    <!-- <h1 class="display-2" style="color: aliceblue;font-family: 'Courier New', Courier, monospace;">Made By:{{college.author.fname}} {{college.author.lname}} </h1> -->
+    <h1 style="color: wheat; font-family: 'Courier New', Courier, monospace; font-size: 80px;">{{college.name}}</h1>
+    <h1 style="color: aliceblue;font-family: 'Courier New', Courier, monospace; font-size: 40px;">Created On: {{moment(college.create_date).format('MMMM Do YYYY')}}</h1><br>
+    <p class="fs-3 text-break" style="color: aliceblue;font-family: 'Courier New', Courier, monospace;">
+        <u><b>Name:</b></u> {{college.name}}
+        {% if college.imagefile %}
+        <img width="600" style="float: right;"  src="data:image;base64,{{base64encode(college.imagefile.read())}}">
+        {% endif %}<br><br>
+        <u><b>Type of College:</b></u> {{college.kind_of}}<br><br>
+        <u><b>Cost Without Aid:</b></u> {{college.bef_cost}}<br><br>
+        <u><b>Cost After Aid:</b></u> {{college.aft_cost}}<br><br>
+        <u><b>Location:</b></u> {{college.location}}<br><br>
+        <u><b>Degree Known For:</Form></b></u>: {{college.kd}}<br><br>
+        <u><b>Summer Weather:</b></u> {{college.sum_weather}}<br><br>
+        <u><b>Winter Weather:</b></u> {{college.wint_weather}}<br>
+    </p>
+{% else %}
+
+{% endif %}
+
+{% endblock %}

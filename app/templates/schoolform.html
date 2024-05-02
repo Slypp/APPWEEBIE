@@ -1,9 +1,10 @@
-{% extends "base.htm" %}
+{% extends "base.html" %}
 
-{% block body% }
-        <h1 style="font-family: 'Courier New', Courier, monospace;">School Form</h1>
-        <form methot="post">
-            {{form.hidden_tag()}}
+{% block body %}
+        <h1 style="font-family: 'Courier New', Courier, monospace;color: aliceblue;"><strong>School Form</strong></h1>
+
+        <form method="post">
+            {{ form.hidden_tag() }}
             <p>
                 {{form.mascot.label}}<br>
                 {{form.mascot()}}
@@ -26,8 +27,8 @@
                 {% endfor %}
             </p>
             <p>
-                {{form.year_tuito.label}}<br>
-                {{form.year_tuito()}}
+                {{form.Price.label}}<br>
+                {{form.Price()}}
                 {% for error in form.mascot.errors %}
                     <br> <span style="color: red;"> [{{ Error}}]</span>
                 {% endfor %}

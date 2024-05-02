@@ -67,16 +67,31 @@ class Blog(Document):
     }
 
 class School(Document):
+    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
     mascot = StringField()
     year_built = IntField()
     location_1 = StringField()
-    year_tuito = IntField()
+    Price = IntField()
     create_date = DateTimeField(default=dt.datetime.utcnow)
     modify_date = DateTimeField()
 
     meta = {
         'ordering': ['-createdate']
     }
+
+class College(Document):
+    author = ReferenceField("User",reverse_delete_rule=CASCADE)
+    imagefile = FileField()
+    kind_of = StringField()
+    name = StringField()
+    bef_cost = IntField()
+    aft_cost = IntField()
+    location = StringField()
+    kd = StringField()
+    sum_weather = StringField()
+    wint_weather = StringField()
+    create_date = DateTimeField(default=dt.datetime.utcnow)
+    modify_date = DateTimeField()
 
 class Comment(Document):
     # Line 63 is a way to access all the information in Course and Teacher w/o storing it in this class

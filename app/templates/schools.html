@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h1 style="color: aliceblue; font-family: 'Courier New', Courier, monospace;"><strong>List of Colleges In California</strong></h1>
+
+
+{% if schools %}
+    {% for school in schools %}
+        <div class="container row border-bottom">
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5" style="color: aliceblue; font-family: 'Courier New', Courier, monospace;"><U>Date:</U></h3>
+                {% endif %}
+                <a href="/school/{{school.id}}">
+                    {{moment(school.create_date).calendar()}}
+                </a>
+            </div>
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5" style="font-family: 'Courier New', Courier, monospace; color: aliceblue; ">By:</h3>
+                {% endif %}
+                {{school.author.fname}} {{school.author.lname}}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+
+{% endif %}
+
+{% endblock %}

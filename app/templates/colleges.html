@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h1 style="color: aliceblue; font-family: 'Courier New', Courier, monospace; font-size: 50px;"><strong><u>College List</u>!</strong></h1>
+    <br>
+{% if colleges %}
+    {% for college in colleges %}
+        <div class="container row">
+                {% if loop.index == 1 %}
+                <p class="display-5" style="color: wheat; font-family: 'Courier New', Courier, monospace;"><b>Pick What You are Interested in:</b></p>
+                <p style="color: bisque; font-size: 20px;"><b>Or pick a specific type of College if you want.</b></p>
+                <div class="grid-container" style="display: grid; gap: 50px 20px; grid-template-columns: auto auto auto auto auto;padding: 6px;">
+                    <a href='/colleges'class="grid-item" style="background-color: wheat;border: 3px solid whitesmoke; padding: 20px; text-align: center;font-size: 20px; font-family: 'Courier New', Courier, monospace; color: black; border-radius: 50px;"><b>All Colleges</b></a>
+                    <a href='/colleges/universities'class="grid-item" style="background-color: wheat;border: 3px solid whitesmoke; padding: 20px; text-align: center;font-size: 20px; font-family: 'Courier New', Courier, monospace; color: black; border-radius: 50px;"><b>Universities</b></a>
+                    <a href='/colleges/community' class="grid-item" style="background-color: wheat;border: 3px solid whitesmoke; padding: 20px; text-align: center;font-size: 20px; font-family: 'Courier New', Courier, monospace; color: black;border-radius: 50px;"><b>Community Colleges</b></a>  
+                    <a href='/colleges/hbcu'  class="grid-item" style="background-color: wheat;border: 3px solid whitesmoke; padding: 20px; text-align: center;font-size: 20px; font-family: 'Courier New', Courier, monospace; color: black; border-radius: 50px;"><b>HBCU's</b></a>
+                    <a href='/colleges/public'  class="grid-item" style="background-color: wheat;border: 3px solid whitesmoke; padding: 20px; text-align: center;font-size: 20px; font-family: 'Courier New', Courier, monospace; color: black; border-radius: 50px;"><b>CSU/UC's</b></a>
+                </div>
+
+                <a href="/college/collegeuniversties"></a>
+
+                {% endif %}
+                <br>
+            <div class="col-3" >
+                <a href="/college/{{college.id}}" style="color: azure; font-size: 25px;">
+                    {{college.name}}<br>
+                    {% if college.imagefile %}
+                    <img width="600" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(college.imagefile.read())}}">
+                    <br><br>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+
+{% endif %}
+
+{% endblock %}

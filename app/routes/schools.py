@@ -2,8 +2,6 @@ from app import app
 import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
-from app.classes.data import Blog, Comment
-from app.classes.forms import BlogForm, CommentForm
 from flask_login import login_required
 import datetime as dt
 from app.classes.data import School
@@ -30,7 +28,7 @@ def schoolNew():
             mascot = form.mascot.data,
             year_built = form.year_built.data,
             location_1 = form.location_1.data,
-            year_tuito = form.year_tuito.date,
+            Price = form.Price.data,
             author = current_user.id,
             # This sets the modifydate to the current datetime.
             modify_date = dt.datetime.utcnow
@@ -44,10 +42,58 @@ def schoolNew():
         # to send them to that blog. url_for takes as its argument the function name
         # for that route (the part after the def key word). You also need to send any
         # other values that are needed by the route you are redirecting to.
-        return redirect(url_for('blog',blogID=newSchool.id))
+        return redirect(url_for('school',schoolID=newSchool.id))
 
     # if form.validate_on_submit() is false then the user either has not yet filled out
     # the form or the form had an error and the user is sent to a blank form. Form errors are 
     # stored in the form object and are displayed on the form. take a look at blogform.html to 
     # see how that works.
     return render_template('schoolform.html',form=form)
+
+
+@app.route('/school/<schoolID>')
+@login_required
+
+def school(schoolID):
+    thisSchool = School.objects.get(id=schoolID)
+    return render_template("school.html", school=thisSchool)
+
+@app.route('/school/list')
+@login_required
+
+def schools():
+    schools = School.objects()
+    return render_template("schools.html",schools=schools)
+
+@app.route('/school/edit/<schoolID>', methods=['GET', 'POST'])
+@login_required
+
+def schoolEdit(schoolID):
+    form = SchoolForm()
+    editSchool = School.objects.get(id=schoolID)
+
+    if editSchool.author != current_user:
+        flash("You can't edit a sleep you don't own.")
+        return redirect(url_for('schools'))
+    
+    if form.validate_on_submit():
+        editSchool.update(
+            mascot = form.mascot.data,
+            year_built = form.year_built.data,
+            location_1 = form.location_1.data,
+            Price = form.Price.data,
+        )
+        return redirect(url_for("school",schoolID=editSchool.id))
+    
+    return render_template("schoolform.html",form=form)
+
+
+@app.route('/school/delete/<schoolID>')
+@login_required
+
+def schoolDelete(schoolID):
+    delSchool = School.objects.get(id=schoolID)
+    sleepDate = delSchool.create_date
+    delSchool.delete()
+    flash(f"The school with date {sleepDate} has been deleted.")
+    return redirect(url_for('schools'))

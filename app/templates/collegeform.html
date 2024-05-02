@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block body %}
+        <h1 style="font-family: 'Courier New', Courier, monospace;color: aliceblue; font-size: 50px;"><strong><u>College Form</u>!</strong></h1>
+        <form method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p style="color: antiquewhite; font-family: 'Courier New', Courier, monospace; font-size: 17px;">
+                {{form.name.label}}<br>
+                {{form.name()}}
+                {% for error in form.name.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p style="color: antiquewhite; font-family: 'Courier New', Courier, monospace; font-size: 17px; ">
+                {{form.kind_of.label}}<br>
+                {{form.kind_of()}}
+                {% for error in form.name.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p style="color: antiquewhite; font-family: 'Courier New', Courier, monospace; font-size: 17px;">
+                {{form.bef_cost.label}}<br>
+                {{form.bef_cost()}}
+                {% for error in form.bef_cost.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p style="color: antiquewhite; font-family: 'Courier New', Courier, monospace; font-size: 17px;">
+                {{form.aft_cost.label}}<br>
+                {{form.aft_cost()}}
+                {% for error in form.aft_cost.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p style="color: antiquewhite; font-family: 'Courier New', Courier, monospace; font-size: 17px;">
+                {{form.location.label}}<br>
+                {{form.location()}}
+                {% for error in form.location.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p style="color: antiquewhite; font-family: 'Courier New', Courier, monospace; font-size: 17px;">
+                {{form.kd.label}}<br>
+                {{form.kd()}}
+                {% for error in form.kd.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p style="color: antiquewhite; font-family: 'Courier New', Courier, monospace; font-size: 17px;">
+                {{form.sum_weather.label}}<br>
+                {{form.sum_weather()}}
+                {% for error in form.sum_weather.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <p style="color: antiquewhite; font-family: 'Courier New', Courier, monospace; font-size: 17px;">
+                {{form.wint_weather.label}}<br>
+                {{form.wint_weather()}}
+                {% for error in form.wint_weather.errors %}
+                    <br> <span style="color: red;"> [{{ Error}}]</span>
+                {% endfor %}
+            </p>
+            <form method="post" enctype="multipart/form-data">
+            <p style="color: antiquewhite; font-family: 'Courier New', Courier, monospace; font-size: 17px;">
+                    {{ form.imagefile.label }}<br>
+                    {{ form.imagefile() }}<br>
+                    {% for error in form.imagefile.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+            </p>
+            <p style="color: antiquewhite; font-family: 'Courier New', Courier, monospace; font-size: 17px;">
+                {{form.submit()}}
+            </p>
+        </form>
+    
+{% endblock %}

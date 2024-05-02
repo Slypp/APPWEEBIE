@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if school %}
+    {% if school.modifydate %}
+        modified {{moment(school.modifydate).calendar()}}
+    {% endif %}
+    <br>
+    {% if school.author == current_user %}
+        <a data-toggle="tooltip" data-placement="top" title="Delete School" href="/school/delete/{{school.id}}">
+            <img width="50" class="bottom-image" src="/static/delete.png">
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="Edit Blog" href="/school/edit/{{school.id}}">
+            <img width="50" class="bottom-image" src="/static/edit.png">
+        </a>
+    {% endif %}
+    <h1 class="display-2" style="color: aliceblue;font-family: 'Courier New', Courier, monospace;">Made By:{{school.author.fname}} {{school.author.lname}} </h1>
+    <h1 class="display-5" style="color: aliceblue;font-family: 'Courier New', Courier, monospace;">Date Created:{{moment(school.create_date).format('MMMM Do YYYY')}}</h1>
+    <p class="fs-3 text-break" style="color: aliceblue;font-family: 'Courier New', Courier, monospace;">
+        Mascot: {{school.mascot}}<br>
+        Year Built: {{school.year_built}}<br>
+        Location: {{school.location_1}}<br>
+        Cost of Attendance: {{school.Price}}<br>
+
+    </p>
+{% else %}
+
+{% endif %}
+
+{% endblock %}

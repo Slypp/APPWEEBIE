@@ -45,8 +45,21 @@ class SchoolForm(FlaskForm):
     mascot = StringField()
     year_built = IntegerField()
     location_1 = StringField()
-    year_tuito = IntegerField()
+    Price = IntegerField()
     submit = SubmitField('Submit')
+
+class CollegeForm(FlaskForm):
+    imagefile = FileField("Something:")
+    kind_of = SelectField("School System", choices=["Community College", "University", "Public 4 Year-College (UC/CSU)", "Historically Black Colleges and Universities(HBCU)"])
+    name = StringField("College Name")
+    bef_cost = StringField("Approximate Cost Without Aid")
+    aft_cost = StringField("Approximate Cost After Aid")
+    location = StringField("Location")
+    kd = StringField("Degree Known For")
+    sum_weather = StringField("Summer Weather")
+    wint_weather = StringField("Winter Weather")
+    submit = SubmitField('Submit')
+
 
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
